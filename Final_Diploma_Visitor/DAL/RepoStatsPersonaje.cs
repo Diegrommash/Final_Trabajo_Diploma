@@ -14,9 +14,6 @@ namespace DAL
             _acceso = acceso;
         }
 
-        // ================================================================
-        // Crear registro inicial al crear personaje
-        // ================================================================
         public async Task CrearAsync(int idPersonaje)
         {
             try
@@ -34,9 +31,6 @@ namespace DAL
             }
         }
 
-        // ================================================================
-        // Sumar un valor a un campo dinámicamente (daño, efectos, etc.)
-        // ================================================================
         public async Task SumarCampoAsync(int idPersonaje, string campo, int valor)
         {
             try
@@ -56,9 +50,6 @@ namespace DAL
             }
         }
 
-        // ================================================================
-        // Actualizar MaxTurnos solo si el nuevo valor es mayor
-        // ================================================================
         public async Task ActualizarMaxTurnosAsync(int idPersonaje, int turnos)
         {
             try

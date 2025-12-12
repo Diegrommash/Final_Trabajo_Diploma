@@ -95,52 +95,52 @@ namespace BLL
             }
         }
 
-        public async Task<Resultado> AplicarEfectoAsync(IPersonaje personaje, IEfectoVisitor efecto)
-        {
-            try
-            {
-                if (personaje == null)
-                    return Resultado.Fallo("No se recibió un personaje válido.");
+        //public async Task<Resultado> AplicarEfectoAsync(IPersonaje personaje, IEfectoVisitor efecto)
+        //{
+        //    try
+        //    {
+        //        if (personaje == null)
+        //            return Resultado.Fallo("No se recibió un personaje válido.");
 
-                personaje.Aceptar(efecto, true);
+        //        personaje.Aceptar(efecto, true);
 
-                int filas = await _repoPersonaje.ModificarAsync(personaje);
+        //        int filas = await _repoPersonaje.ModificarAsync(personaje);
 
-                if (filas == 0)
-                    return Resultado.Fallo("No se pudo guardar el efecto aplicado en la base de datos.");
+        //        if (filas == 0)
+        //            return Resultado.Fallo("No se pudo guardar el efecto aplicado en la base de datos.");
 
-                return Resultado.Correcto();
-            }
-            catch (Exception ex)
-            {
-                return Resultado.Fallo(
-                    "Error al aplicar el efecto: " + ex.Message);
-            }
-        }
+        //        return Resultado.Correcto();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Resultado.Fallo(
+        //            "Error al aplicar el efecto: " + ex.Message);
+        //    }
+        //}
 
-        public async Task<Resultado> AplicarEfectoAsync(int id, IEfectoVisitor efecto)
-        {
-            try
-            {
-                var resPj = await ObtenerPorIdAsync(id);
-                if (!resPj.Exito || resPj.Valor == null)
-                    return Resultado.Fallo(resPj.Error ?? "No se pudo obtener el personaje.");
+        //public async Task<Resultado> AplicarEfectoAsync(int id, IEfectoVisitor efecto)
+        //{
+        //    try
+        //    {
+        //        var resPj = await ObtenerPorIdAsync(id);
+        //        if (!resPj.Exito || resPj.Valor == null)
+        //            return Resultado.Fallo(resPj.Error ?? "No se pudo obtener el personaje.");
 
-                var personaje = resPj.Valor;
+        //        var personaje = resPj.Valor;
 
-                personaje.Aceptar(efecto, true);
+        //        personaje.Aceptar(efecto, true);
 
-                int filas = await _repoPersonaje.ModificarAsync(personaje);
-                if (filas == 0)
-                    return Resultado.Fallo("No se pudo guardar el efecto aplicado.");
+        //        int filas = await _repoPersonaje.ModificarAsync(personaje);
+        //        if (filas == 0)
+        //            return Resultado.Fallo("No se pudo guardar el efecto aplicado.");
 
-                return Resultado.Correcto();
-            }
-            catch (Exception ex)
-            {
-                return Resultado.Fallo("Error al aplicar el efecto: " + ex.Message);
-            }
-        }
+        //        return Resultado.Correcto();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Resultado.Fallo("Error al aplicar el efecto: " + ex.Message);
+        //    }
+        //}
 
       
     }

@@ -14,7 +14,6 @@
 
                 g.EstadosTemporales.Add(new EstadoTemporal
                 {
-                    Nombre = "Quemadura",
                     Efecto = this,
                     TurnosRestantes = 2
                 });
@@ -39,7 +38,6 @@
 
                 m.EstadosTemporales.Add(new EstadoTemporal
                 {
-                    Nombre = "Quemadura",
                     Efecto = this,
                     TurnosRestantes = 2
                 });
@@ -64,7 +62,6 @@
 
                 a.EstadosTemporales.Add(new EstadoTemporal
                 {
-                    Nombre = "Quemadura",
                     Efecto = this,
                     TurnosRestantes = 2
                 });

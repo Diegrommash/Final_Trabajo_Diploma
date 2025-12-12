@@ -20,7 +20,6 @@ namespace BE
             {
                 g.EstadosTemporales.Add(new EstadoTemporal
                 {
-                    Nombre = "Veneno",
                     Efecto = this,
                     TurnosRestantes = 3
                 });
@@ -39,7 +38,6 @@ namespace BE
             {
                 m.EstadosTemporales.Add(new EstadoTemporal
                 {
-                    Nombre = "Veneno",
                     Efecto = this,
                     TurnosRestantes = 3
                 });
@@ -58,7 +56,6 @@ namespace BE
             {
                 a.EstadosTemporales.Add(new EstadoTemporal
                 {
-                    Nombre = "Veneno",
                     Efecto = this,
                     TurnosRestantes = 3
                 });

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SdYleNpCXbM=",
+  "dgSpecHash": "hsH4Fj/LPxs=",
   "success": true,
-  "projectFilePath": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final\\Final_Diploma_Visitor\\DAL\\DAL.csproj",
+  "projectFilePath": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\DAL\\DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Carolwen\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\Carolwen\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",

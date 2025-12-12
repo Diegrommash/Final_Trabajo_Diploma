@@ -13,7 +13,6 @@
 
                 g.EstadosTemporales.Add(new EstadoTemporal
                 {
-                    Nombre = "Escudo Mágico",
                     Efecto = this,
                     TurnosRestantes = 2
                 });
@@ -35,7 +34,6 @@
 
                 m.EstadosTemporales.Add(new EstadoTemporal
                 {
-                    Nombre = "Escudo Mágico",
                     Efecto = this,
                     TurnosRestantes = 2
                 });
@@ -57,7 +55,6 @@
 
                 a.EstadosTemporales.Add(new EstadoTemporal
                 {
-                    Nombre = "Escudo Mágico",
                     Efecto = this,
                     TurnosRestantes = 2
                 });

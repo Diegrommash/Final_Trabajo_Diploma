@@ -14,7 +14,6 @@
 
                 g.EstadosTemporales.Add(new EstadoTemporal
                 {
-                    Nombre = "Ira",
                     Efecto = this,
                     TurnosRestantes = 2
                 });
@@ -40,7 +39,6 @@
 
                 m.EstadosTemporales.Add(new EstadoTemporal
                 {
-                    Nombre = "Ira",
                     Efecto = this,
                     TurnosRestantes = 2
                 });
@@ -66,7 +64,6 @@
 
                 a.EstadosTemporales.Add(new EstadoTemporal
                 {
-                    Nombre = "Ira",
                     Efecto = this,
                     TurnosRestantes = 2
                 });

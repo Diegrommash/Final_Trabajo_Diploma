@@ -9,13 +9,9 @@ namespace BLL
 {
     public class ServBatalla
     {
-        // si quisieras persistir al final, acá podrías inyectar ServPersonaje
-        // private readonly ServPersonaje _servPersonaje;
-
         public ServBatalla()
         {
         }
-
 
         public Resultado<ResultadoBatalla> SimularTurno(
             IPersonaje atacante,
@@ -81,87 +77,6 @@ namespace BLL
             }
         }
 
-        //private void AplicarEstadosTemporales(IPersonaje personaje, ResultadoBatalla resultado, string rol)
-        //{
-        //    if (personaje.EstadosTemporales.Count == 0)
-        //        return;
-
-        //    var aEliminar = new List<EstadoTemporal>();
-
-        //    foreach (var estado in personaje.EstadosTemporales)
-        //    {
-        //        // Aplicamos el efecto de nuevo este turno
-        //        personaje.Aceptar(estado.Efecto);
-
-        //        estado.TurnosRestantes--;
-
-        //        resultado.LogEventos.Add(
-        //            $"[Turno {resultado.NumeroTurno}] {personaje} ({rol}) sufre efecto '{estado.Nombre}'. Turnos restantes: {estado.TurnosRestantes}");
-
-        //        if (estado.TurnosRestantes <= 0)
-        //            aEliminar.Add(estado);
-        //    }
-
-        //    foreach (var estado in aEliminar)
-        //    {
-        //        personaje.EstadosTemporales.Remove(estado);
-        //        resultado.LogEventos.Add(
-        //            $"[Turno {resultado.NumeroTurno}] El efecto '{estado.Nombre}' ha terminado para {personaje} ({rol}).");
-        //    }
-        //}
-        //public Resultado<ResultadoBatalla> SimularTurno(
-        //    IPersonaje atacante,
-        //    IPersonaje defensor,
-        //    IEfectoVisitor escenario,
-        //    int turno)
-        //{
-        //    var resultado = new ResultadoBatalla();
-
-        //    resultado.LogEventos.Add($"[Turno {turno}]");
-
-        //    // =======================================================
-        //    // 1️⃣ Escenario afecta a ambos personajes
-        //    // =======================================================
-        //    if (escenario != null)
-        //    {
-        //        string logA = atacante.Aceptar(escenario);
-        //        string logD = defensor.Aceptar(escenario);
-
-        //        resultado.LogEventos.Add($"  Escenario:");
-        //        resultado.LogEventos.Add($"    - {atacante}: {logA}");
-        //        resultado.LogEventos.Add($"    - {defensor}: {logD}");
-        //    }
-
-        //    // =======================================================
-        //    // 2️⃣ Aplicar efectos prolongados
-        //    // =======================================================
-        //    AplicarEstadosTemporales(atacante, resultado);
-        //    AplicarEstadosTemporales(defensor, resultado);
-
-        //    // =======================================================
-        //    // 3️⃣ Ataque principal del turno
-        //    // =======================================================
-        //    int dano = Math.Max(0, atacante.Ataque - defensor.Defensa);
-        //    defensor.Vida -= dano;
-
-        //    resultado.LogEventos.Add($"  {atacante} ataca a {defensor}: {dano} de daño.");
-
-        //    // =======================================================
-        //    // 4️⃣ Determinar si la batalla terminó
-        //    // =======================================================
-        //    if (defensor.Vida <= 0)
-        //    {
-        //        resultado.BatallaFinalizada = true;
-        //        resultado.Ganador = atacante;
-
-        //        resultado.LogEventos.Add($"  {defensor} ha caído.");
-        //        resultado.LogEventos.Add($"  ¡GANADOR: {atacante}!");
-
-        //        return Resultado<ResultadoBatalla>.Correcto(resultado);
-        //    }
-
-        //    return Resultado<ResultadoBatalla>.Correcto(resultado);
-        //}
 
         private void AplicarEstadosTemporales(IPersonaje p, ResultadoBatalla res)
         {

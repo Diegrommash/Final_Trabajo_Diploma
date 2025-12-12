@@ -15,7 +15,6 @@
 
                 g.EstadosTemporales.Add(new EstadoTemporal
                 {
-                    Nombre = "Bendición",
                     Efecto = this,
                     TurnosRestantes = 3
                 });
@@ -41,7 +40,6 @@
 
                 m.EstadosTemporales.Add(new EstadoTemporal
                 {
-                    Nombre = "Bendición",
                     Efecto = this,
                     TurnosRestantes = 3
                 });
@@ -66,7 +64,6 @@
 
                 a.EstadosTemporales.Add(new EstadoTemporal
                 {
-                    Nombre = "Bendición",
                     Efecto = this,
                     TurnosRestantes = 3
                 });

@@ -203,12 +203,16 @@ namespace UI
 
             if (datos.BatallaFinalizada)
             {
+
+                foreach (var linea in datos.LogEventos)
+                    lstLog.Items.Add(linea);
+
                 if (datos.Ganador != null)
                 {
-                    lstLog.Items.Add($"GANADOR: {datos.Ganador}");
-
                     IPersonaje ganador = datos.Ganador;
                     IPersonaje perdedor = ganador == _personaje1 ? _personaje2! : _personaje1!;
+
+                    lstLog.Items.Add($"🏆 GANADOR: {ganador}");
 
                     await _servStatsPersonaje.RegistrarVictoria(ganador.Id);
                     await _servStatsPersonaje.RegistrarDerrota(perdedor.Id);
@@ -218,13 +222,23 @@ namespace UI
                 }
                 else
                 {
-                    lstLog.Items.Add("EMPATE.");
+                    lstLog.Items.Add("🤝 EMPATE.");
                 }
 
-                MessageBox.Show("La batalla ha concluido.");
-                TerminarBatalla();
+                DialogResult decision = MostrarMensajeFinal(datos.Ganador);
+
+                if (decision == DialogResult.Yes)
+                {
+                    ReiniciarBatalla();
+                }
+                else
+                {
+                    TerminarBatalla();
+                }
+
                 return;
             }
+
 
             _turnoP1Ataca = !_turnoP1Ataca;
             lstLog.Items.Add("=== Cambian los roles: ahora ataca el otro personaje ===");
@@ -234,18 +248,6 @@ namespace UI
 
             _turnoActual++;
             lblTurno.Text = $"Turno: {_turnoActual}";
-        }
-
-        private IEfectoVisitor? CrearEscenario()
-        {
-            string nombre = cboEscenario.SelectedItem?.ToString()!;
-
-            return nombre switch
-            {
-                "Bosque" => new BosqueVisitor(),
-                "Volcán" => new VolcanVisitor(),
-                _ => null
-            };
         }
 
         private void TerminarBatalla()
@@ -264,6 +266,40 @@ namespace UI
             lblEfectosTurno.Text = "Efectos usados este turno: 0/2";
 
         }
+
+        private async void ReiniciarBatalla()
+        {
+            lstLog.Items.Add("=== Nueva batalla iniciada ===");
+
+            _turnoActual = 1;
+            lblTurno.Text = "Turno: 1";
+
+            _efectosUsadosEnTurno = 0;
+            lblEfectosTurno.Text = "Efectos usados este turno: 0/2";
+
+
+            _batallaEnCurso = false;
+
+            _personaje1?.EstadosTemporales.Clear();
+            _personaje2?.EstadosTemporales.Clear();
+
+            _personaje1 = (await _servPersonaje.ObtenerPorIdAsync(_personaje1.Id)).Valor!;
+            _personaje2 = (await _servPersonaje.ObtenerPorIdAsync(_personaje2.Id)).Valor!;
+
+            _turnoP1Ataca = new Random().Next(0, 2) == 0;
+
+            lstLog.Items.Add(
+                _turnoP1Ataca
+                ? "🎲 El Personaje 1 inicia el ataque"
+                : "🎲 El Personaje 2 inicia el ataque"
+            );
+
+            _batallaEnCurso = true;
+
+            ActualizarVidaYEstadosUI();
+            ActualizarSpritesPersonajesSeleccionados();
+        }
+
 
         private Image? ObtenerSprite(IPersonaje p)
         {
@@ -420,23 +456,38 @@ namespace UI
             overlay.Dispose();
         }
 
-        private async Task AnimarEfecto(PictureBox objetivo, IEfectoVisitor efecto)
+        private async Task AnimarEfecto(PictureBox pic, IEfectoVisitor efecto)
         {
-            Color flash = efecto.ToString() switch
+            if (pic.Parent == null) return;
+
+            Color color = efecto.Nombre switch
             {
-                "Cura" => Color.LightGreen,
-                "Bendición" => Color.LightBlue,
-                "Mejora Ataque" => Color.Yellow,
-                _ => Color.Red
+                "Cura" => Color.FromArgb(120, Color.Lime),
+                "Bendicion" => Color.FromArgb(120, Color.DeepSkyBlue),
+                "Mejora ataque" => Color.FromArgb(120, Color.Gold),
+                "Quemadura" => Color.FromArgb(140, Color.OrangeRed),
+                "Veneno" => Color.FromArgb(140, Color.Purple),
+                "Ira" => Color.FromArgb(140, Color.DarkRed),
+                "Congelamiento" => Color.FromArgb(140, Color.Cyan),
+                _ => Color.FromArgb(140, Color.Red)
             };
 
-            var original = objetivo.BackColor;
+            Panel overlay = new Panel
+            {
+                BackColor = color,
+                Bounds = pic.Bounds
+            };
 
-            objetivo.BackColor = flash;
-            await Task.Delay(180);
+            pic.Parent.Controls.Add(overlay);
+            overlay.BringToFront();
 
-            objetivo.BackColor = original;
+            await Task.Delay(220);
+
+            pic.Parent.Controls.Remove(overlay);
+            overlay.Dispose();
         }
+
+
 
         private async void picP1_Click(object sender, EventArgs e)
         {
@@ -469,7 +520,6 @@ namespace UI
             }
 
             var efecto = (IEfectoVisitor)cboEfectos.SelectedItem!;
-           // var visitor = CrearBuffDebuff(efectoNom);
 
             if (efecto == null)
             {
@@ -490,9 +540,9 @@ namespace UI
 
             ActualizarVidaYEstadosUI();
 
-            var res = await _servPersonaje.ModificarAsync(personaje);
-            if (!res.Exito)
-                MessageBox.Show(res.Error);
+            //var res = await _servPersonaje.ModificarAsync(personaje);
+            //if (!res.Exito)
+            //    MessageBox.Show(res.Error);
         }
 
         private void btnStatsP1_Click(object sender, EventArgs e)
@@ -517,6 +567,35 @@ namespace UI
 
             var form = new FormStatsPersonaje(_personaje2.Id, _servStatsPersonaje);
             form.ShowDialog(this);
+        }
+
+        private DialogResult MostrarMensajeFinal(IPersonaje? ganador)
+        {
+            string titulo = "⚔️ Batalla finalizada";
+            string mensaje;
+
+            if (ganador != null)
+            {
+                mensaje =
+                    $"🏆 ¡Victoria!\n\n" +
+                    $"El vencedor es:\n" +
+                    $"➡ {ganador}\n\n" +
+                    $"¿Querés jugar otra batalla?";
+            }
+            else
+            {
+                mensaje =
+                    $"🤝 ¡Empate!\n\n" +
+                    $"Ambos combatientes cayeron al mismo tiempo.\n\n" +
+                    $"¿Querés jugar otra batalla?";
+            }
+
+            return MessageBox.Show(
+                mensaje,
+                titulo,
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Information
+            );
         }
 
     }

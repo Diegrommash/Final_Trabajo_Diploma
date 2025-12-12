@@ -18,11 +18,7 @@
         {
             lblEfecto = new Label();
             cboEfectos = new ComboBox();
-            //btnAplicarEfecto = new Button();
             btnRefrescar = new Button();
-            //btnEliminar = new Button();
-            //btnNuevo = new Button();
-            //btnEditar = new Button();
             lblPersonajeUno = new Label();
             cboPersonajeUno = new ComboBox();
             lblPersonajeDos = new Label();
@@ -65,15 +61,6 @@
             cboEfectos.Size = new Size(180, 23);
             cboEfectos.TabIndex = 15;
             // 
-            // btnAplicarEfecto
-            // 
-            //btnAplicarEfecto.Location = new Point(261, 385);
-            //btnAplicarEfecto.Name = "btnAplicarEfecto";
-            //btnAplicarEfecto.Size = new Size(110, 25);
-            //btnAplicarEfecto.TabIndex = 14;
-            //btnAplicarEfecto.Text = "Aplicar efecto";
-            //btnAplicarEfecto.Click += btnAplicarEfecto_Click;
-            // 
             // btnRefrescar
             // 
             btnRefrescar.Location = new Point(381, 385);
@@ -82,33 +69,6 @@
             btnRefrescar.TabIndex = 13;
             btnRefrescar.Text = "Refrescar";
             btnRefrescar.Click += btnRefrescar_Click;
-            // 
-            // btnEliminar
-            // 
-            //btnEliminar.Location = new Point(471, 385);
-            //btnEliminar.Name = "btnEliminar";
-            //btnEliminar.Size = new Size(75, 25);
-            //btnEliminar.TabIndex = 12;
-            //btnEliminar.Text = "Eliminar";
-            //btnEliminar.Click += btnEliminar_Click;
-            //// 
-            //// btnNuevo
-            //// 
-            //btnNuevo.Location = new Point(556, 385);
-            //btnNuevo.Name = "btnNuevo";
-            //btnNuevo.Size = new Size(75, 25);
-            //btnNuevo.TabIndex = 11;
-            //btnNuevo.Text = "Nuevo";
-            //btnNuevo.Click += btnNuevo_Click;
-            //// 
-            //// btnEditar
-            //// 
-            //btnEditar.Location = new Point(641, 385);
-            //btnEditar.Name = "btnEditar";
-            //btnEditar.Size = new Size(75, 25);
-            //btnEditar.TabIndex = 10;
-            //btnEditar.Text = "Editar";
-            //btnEditar.Click += btnEditar_Click;
             // 
             // lblPersonajeUno
             // 
@@ -328,11 +288,7 @@
             Controls.Add(lblPersonajeDos);
             Controls.Add(cboPersonajeUno);
             Controls.Add(lblPersonajeUno);
-            //Controls.Add(btnEditar);
-            //Controls.Add(btnNuevo);
-            //Controls.Add(btnEliminar);
             Controls.Add(btnRefrescar);
-            //Controls.Add(btnAplicarEfecto);
             Controls.Add(cboEfectos);
             Controls.Add(lblEfecto);
             Controls.Add(pnlArena);
@@ -352,11 +308,7 @@
         #endregion
         private System.Windows.Forms.Label lblEfecto;
         private System.Windows.Forms.ComboBox cboEfectos;
-        //private System.Windows.Forms.Button btnAplicarEfecto;
         private System.Windows.Forms.Button btnRefrescar;
-        //private System.Windows.Forms.Button btnEliminar;
-        //private System.Windows.Forms.Button btnNuevo;
-        //private System.Windows.Forms.Button btnEditar;
 
         private System.Windows.Forms.Label lblPersonajeUno;
         private System.Windows.Forms.ComboBox cboPersonajeUno;

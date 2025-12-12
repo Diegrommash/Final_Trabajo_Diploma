@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final\\Final_Diploma_Visitor\\BE\\BE.csproj",
+      "projectUniqueName": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\BE\\BE.csproj",
       "projectName": "BE",
-      "projectPath": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final\\Final_Diploma_Visitor\\BE\\BE.csproj",
+      "projectPath": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\BE\\BE.csproj",
       "packagesPath": "C:\\Users\\Carolwen\\.nuget\\packages\\",
-      "outputPath": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final\\Final_Diploma_Visitor\\BE\\obj\\",
+      "outputPath": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\BE\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
