@@ -9,3 +9,15 @@ C:\Ingenieria\Diego\Trabajo de diploma\Final\Visitor\Final_Diploma_Visitor\BE\ob
 C:\Ingenieria\Diego\Trabajo de diploma\Final\Visitor\Final_Diploma_Visitor\BE\obj\Debug\net8.0\refint\BE.dll
 C:\Ingenieria\Diego\Trabajo de diploma\Final\Visitor\Final_Diploma_Visitor\BE\obj\Debug\net8.0\BE.pdb
 C:\Ingenieria\Diego\Trabajo de diploma\Final\Visitor\Final_Diploma_Visitor\BE\obj\Debug\net8.0\ref\BE.dll
+C:\Ingenieria\Diego\Trabajo de diploma\Final\Final_Diploma_Visitor\BE\bin\Debug\net8.0\BE.deps.json
+C:\Ingenieria\Diego\Trabajo de diploma\Final\Final_Diploma_Visitor\BE\bin\Debug\net8.0\BE.dll
+C:\Ingenieria\Diego\Trabajo de diploma\Final\Final_Diploma_Visitor\BE\bin\Debug\net8.0\BE.pdb
+C:\Ingenieria\Diego\Trabajo de diploma\Final\Final_Diploma_Visitor\BE\obj\Debug\net8.0\BE.GeneratedMSBuildEditorConfig.editorconfig
+C:\Ingenieria\Diego\Trabajo de diploma\Final\Final_Diploma_Visitor\BE\obj\Debug\net8.0\BE.AssemblyInfoInputs.cache
+C:\Ingenieria\Diego\Trabajo de diploma\Final\Final_Diploma_Visitor\BE\obj\Debug\net8.0\BE.AssemblyInfo.cs
+C:\Ingenieria\Diego\Trabajo de diploma\Final\Final_Diploma_Visitor\BE\obj\Debug\net8.0\BE.csproj.CoreCompileInputs.cache
+C:\Ingenieria\Diego\Trabajo de diploma\Final\Final_Diploma_Visitor\BE\obj\Debug\net8.0\BE.sourcelink.json
+C:\Ingenieria\Diego\Trabajo de diploma\Final\Final_Diploma_Visitor\BE\obj\Debug\net8.0\BE.dll
+C:\Ingenieria\Diego\Trabajo de diploma\Final\Final_Diploma_Visitor\BE\obj\Debug\net8.0\refint\BE.dll
+C:\Ingenieria\Diego\Trabajo de diploma\Final\Final_Diploma_Visitor\BE\obj\Debug\net8.0\BE.pdb
+C:\Ingenieria\Diego\Trabajo de diploma\Final\Final_Diploma_Visitor\BE\obj\Debug\net8.0\ref\BE.dll

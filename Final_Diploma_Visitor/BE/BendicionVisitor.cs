@@ -2,6 +2,9 @@
 {
     public class BendicionVisitor : IEfectoVisitor
     {
+        private string _nombre = "Bendicion";
+        public string Nombre => _nombre;
+
         public string Visitar(Guerrero g, bool esInicial)
         {
             if (esInicial)
@@ -78,5 +81,6 @@
                 return "La bendición inspira al Arquero: +4 Vida, +2 Defensa.";
             }
         }
+        public override string ToString() => _nombre;
     }
 }

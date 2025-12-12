@@ -2,6 +2,9 @@
 {
     public class CongelamientoVisitor : IEfectoVisitor
     {
+        private string _nombre = "Congelamiento";
+        public string Nombre => _nombre;
+
         public string Visitar(Guerrero g, bool esInicial)
         {
             if (esInicial)
@@ -76,5 +79,7 @@
                 return "El frío extremo sigue reduciendo la precisión del Arquero: -5 Ataque y -2 Defensa.";
             }
         }
+
+        public override string ToString() => _nombre;
     }
 }

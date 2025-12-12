@@ -2,6 +2,9 @@
 {
     public class IraVisitor : IEfectoVisitor
     {
+        private string _nombre = "Ira";
+        public string Nombre => _nombre;
+
         public string Visitar(Guerrero g, bool esInicial)
         {
             if (esInicial)
@@ -20,9 +23,9 @@
             }
             else
             {
-                g.Vida -= 5;     // desgaste
-                g.Defensa -= 3;  // se descuida cada vez más
-                g.Ataque += 5;   // golpear más fuerte sin control
+                g.Vida -= 5;   
+                g.Defensa -= 3;  
+                g.Ataque += 5;  
 
                 return "La furia consume al Guerrero: -5 Vida, -3 Defensa, +5 Ataque.";
             }
@@ -80,5 +83,6 @@
             }
         }
 
+        public override string ToString() => _nombre;
     }
 }

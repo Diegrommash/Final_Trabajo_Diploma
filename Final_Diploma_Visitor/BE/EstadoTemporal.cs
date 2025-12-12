@@ -8,6 +8,7 @@ namespace BE
 {
     public class EstadoTemporal
     {
+
         public string Nombre { get; set; } = "";
         public IEfectoVisitor Efecto { get; set; } = default!;
         public int TurnosRestantes { get; set; }

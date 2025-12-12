@@ -3,6 +3,10 @@ namespace BE
 {
     public class CuraVisitor : IEfectoVisitor
     {
+
+        private string _nombre = "Cura";
+        public string Nombre => _nombre;
+
         public string Visitar(Guerrero g, bool inicio)
         {
             g.Vida += 20;
@@ -20,5 +24,8 @@ namespace BE
             a.Vida += 25;
             return "El Arquero recupera aliento y precisión: +25 Vida.";
         }
+
+        public override string ToString() => _nombre;
+
     }
 }

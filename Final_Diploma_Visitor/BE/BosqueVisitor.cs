@@ -3,6 +3,9 @@ namespace BE
 {
     public class BosqueVisitor : IEfectoVisitor
     {
+        private string _nombre = "Bosque";
+        public string Nombre => _nombre;
+
         public string Visitar(Guerrero g, bool inicio)
         {
             g.Defensa += 2;
@@ -20,5 +23,7 @@ namespace BE
             a.Ataque += 5;
             return "El bosque potencia la precisión de sus flechas (+5 ATQ).";
         }
+
+        public override string ToString() => _nombre;
     }
 }

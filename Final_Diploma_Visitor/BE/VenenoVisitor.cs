@@ -8,6 +8,9 @@ namespace BE
 {
     public class VenenoVisitor : IEfectoVisitor
     {
+        private string _nombre = "Veneno";
+        public string Nombre => _nombre;
+
         public string Visitar(Guerrero g, bool esInicial)
         {
             // daño dependiendo de si es el primer turno o uno prolongado
@@ -65,5 +68,6 @@ namespace BE
 
             return "El veneno continúa debilitando al Arquero: -8 Vida.";
         }
+        public override string ToString() => _nombre;
     }
 }

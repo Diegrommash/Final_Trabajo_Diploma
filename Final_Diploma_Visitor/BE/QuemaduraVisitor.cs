@@ -2,6 +2,9 @@
 {
     public class QuemaduraVisitor : IEfectoVisitor
     {
+        private string _nombre = "Quemadura";
+        public string Nombre => _nombre;
+
         public string Visitar(Guerrero g, bool esInicial)
         {
             if (esInicial)
@@ -76,5 +79,6 @@
                 return "Las quemaduras continúan debilitando al Arquero: -8 Vida y -3 Ataque.";
             }
         }
+        public override string ToString() => _nombre;
     }
 }

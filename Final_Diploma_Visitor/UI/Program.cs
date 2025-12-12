@@ -25,10 +25,13 @@ namespace UI
             RepoPersonaje repoPersonaje = new RepoPersonaje(acceso);
             ServPersonaje servPersonaje = new ServPersonaje(repoPersonaje);
 
+            RepoStatsPersonaje repoStatsPersonaje = new RepoStatsPersonaje(acceso);
+            ServStatsPersonaje servStatsPersonaje = new ServStatsPersonaje(repoStatsPersonaje);
+
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new FormPrincipal(servPersonaje));
+            Application.Run(new FormPrincipal(servPersonaje, servStatsPersonaje));
         }
     }
 }

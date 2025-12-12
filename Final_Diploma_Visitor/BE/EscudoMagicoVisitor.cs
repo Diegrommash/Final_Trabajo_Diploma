@@ -2,6 +2,9 @@
 {
     public class EscudoMagicoVisitor : IEfectoVisitor
     {
+        private string _nombre = "Escudo magico";
+        public string Nombre => _nombre;
+
         public string Visitar(Guerrero g, bool esInicial)
         {
             if (esInicial)
@@ -67,6 +70,6 @@
                 return "El escudo mágico sigue amortiguando ataques del Arquero: +3 Defensa adicional.";
             }
         }
-
+        public override string ToString() => _nombre;
     }
 }

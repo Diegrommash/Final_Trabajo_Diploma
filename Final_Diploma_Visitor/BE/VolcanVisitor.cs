@@ -8,6 +8,9 @@ namespace BE
 {
     public class VolcanVisitor : IEfectoVisitor
     {
+        private string _nombre = "Volcan";
+        public string Nombre => _nombre;
+
         public string Visitar(Guerrero g, bool inicio)
         {
             g.Vida -= 5;
@@ -25,6 +28,6 @@ namespace BE
             a.Vida -= 6;
             return "La ceniza volcánica dificulta al Arquero: -6 Vida.";
         }
+        public override string ToString() => _nombre;
     }
-
 }

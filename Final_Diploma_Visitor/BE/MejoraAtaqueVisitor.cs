@@ -3,6 +3,9 @@ namespace BE
 {
     public class MejoraAtaqueVisitor : IEfectoVisitor
     {
+        private string _nombre = "Mejora ataque";
+        public string Nombre => _nombre;
+
         public string Visitar(Guerrero g, bool inicio)
         {
             g.Ataque += 15;
@@ -23,6 +26,7 @@ namespace BE
 
             return "El Arquero ajusta su puntería con precisión mortal: +20 Ataque.";
         }
-    }
 
+        public override string ToString() => _nombre;
+    }
 }

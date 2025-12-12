@@ -16,174 +16,347 @@
 
         private void InitializeComponent()
         {
-            this.dgvPersonajes = new System.Windows.Forms.DataGridView();
-            this.lblEfecto = new System.Windows.Forms.Label();
-            this.cboEfectos = new System.Windows.Forms.ComboBox();
-            this.btnAplicarEfecto = new System.Windows.Forms.Button();
-            this.btnRefrescar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnNuevo = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-
-            this.lblPersonajeUno = new System.Windows.Forms.Label();
-            this.cboPersonajeUno = new System.Windows.Forms.ComboBox();
-            this.lblPersonajeDos = new System.Windows.Forms.Label();
-            this.cboPersonajeDos = new System.Windows.Forms.ComboBox();
-
-            this.lblEscenario = new System.Windows.Forms.Label();
-            this.cboEscenario = new System.Windows.Forms.ComboBox();
-
-            this.btnAtacar = new System.Windows.Forms.Button();
-            this.lblTurno = new System.Windows.Forms.Label();
-            this.lstLog = new System.Windows.Forms.ListBox();
-            this.lblEfectosTurno = new System.Windows.Forms.Label();
-
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPersonajes)).BeginInit();
-            this.SuspendLayout();
-
-            // ==========================================================
-            // GRILLA
-            // ==========================================================
-            this.dgvPersonajes.AllowUserToAddRows = false;
-            this.dgvPersonajes.AllowUserToDeleteRows = false;
-            this.dgvPersonajes.Anchor = ((System.Windows.Forms.AnchorStyles)
-                ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                | System.Windows.Forms.AnchorStyles.Right))));
-            this.dgvPersonajes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPersonajes.Location = new System.Drawing.Point(12, 12);
-            this.dgvPersonajes.MultiSelect = false;
-            this.dgvPersonajes.Name = "dgvPersonajes";
-            this.dgvPersonajes.ReadOnly = true;
-            this.dgvPersonajes.RowHeadersVisible = false;
-            this.dgvPersonajes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPersonajes.Size = new System.Drawing.Size(760, 250);
-
-            // ==========================================================
-            // EFECTOS MANUALES (Fila 2)
-            // ==========================================================
-            this.lblEfecto.Location = new System.Drawing.Point(12, 270);
-            this.lblEfecto.Text = "Efecto:";
-
-            this.cboEfectos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboEfectos.Location = new System.Drawing.Point(70, 267);
-            this.cboEfectos.Size = new System.Drawing.Size(180, 23);
-
-            this.btnAplicarEfecto.Location = new System.Drawing.Point(260, 266);
-            this.btnAplicarEfecto.Size = new System.Drawing.Size(110, 25);
-            this.btnAplicarEfecto.Text = "Aplicar efecto";
-
-            this.btnRefrescar.Location = new System.Drawing.Point(380, 266);
-            this.btnRefrescar.Size = new System.Drawing.Size(80, 25);
-            this.btnRefrescar.Text = "Refrescar";
-
-            this.btnEliminar.Location = new System.Drawing.Point(470, 266);
-            this.btnEliminar.Size = new System.Drawing.Size(75, 25);
-            this.btnEliminar.Text = "Eliminar";
-
-            this.btnNuevo.Location = new System.Drawing.Point(555, 266);
-            this.btnNuevo.Size = new System.Drawing.Size(75, 25);
-            this.btnNuevo.Text = "Nuevo";
-
-            this.btnEditar.Location = new System.Drawing.Point(640, 266);
-            this.btnEditar.Size = new System.Drawing.Size(75, 25);
-            this.btnEditar.Text = "Editar";
-
-            // ==========================================================
-            // BATALLA: PERSONAJE 1, PERSONAJE 2, ESCENARIO (Fila 3)
-            // ==========================================================
-            this.lblPersonajeUno.Location = new System.Drawing.Point(12, 305);
-            this.lblPersonajeUno.Text = "Personaje 1:";
-
-            this.cboPersonajeUno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPersonajeUno.Location = new System.Drawing.Point(95, 302);
-            this.cboPersonajeUno.Size = new System.Drawing.Size(150, 23);
-
-            this.lblPersonajeDos.Location = new System.Drawing.Point(260, 305);
-            this.lblPersonajeDos.Text = "Personaje 2:";
-
-            this.cboPersonajeDos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPersonajeDos.Location = new System.Drawing.Point(345, 302);
-            this.cboPersonajeDos.Size = new System.Drawing.Size(150, 23);
-
-            this.lblEscenario.Location = new System.Drawing.Point(510, 305);
-            this.lblEscenario.Text = "Escenario:";
-
-            this.cboEscenario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboEscenario.Location = new System.Drawing.Point(580, 302);
-            this.cboEscenario.Size = new System.Drawing.Size(140, 23);
-
-            this.btnAtacar.Location = new System.Drawing.Point(730, 302);
-            this.btnAtacar.Size = new System.Drawing.Size(45, 23);
-            this.btnAtacar.Text = "Go!";
-
-            // ==========================================================
-            // Fila 4 - Turno y contador de efectos
-            // ==========================================================
-            this.lblTurno.Location = new System.Drawing.Point(12, 335);
-            this.lblTurno.Text = "Turno: 1";
-
-            this.lblEfectosTurno.Location = new System.Drawing.Point(150, 335);
-            this.lblEfectosTurno.AutoSize = true;
-            this.lblEfectosTurno.Text = "Efectos usados: 0/2";
-
-            // ==========================================================
-            // LOG DE BATALLA
-            // ==========================================================
-            this.lstLog.Location = new System.Drawing.Point(12, 365);
-            this.lstLog.Size = new System.Drawing.Size(760, 145);
-
-            // ==========================================================
-            // FORM
-            // ==========================================================
-            this.ClientSize = new System.Drawing.Size(784, 521);
-            this.Controls.Add(this.lstLog);
-            this.Controls.Add(this.lblEfectosTurno);
-            this.Controls.Add(this.lblTurno);
-            this.Controls.Add(this.btnAtacar);
-            this.Controls.Add(this.cboEscenario);
-            this.Controls.Add(this.lblEscenario);
-            this.Controls.Add(this.cboPersonajeDos);
-            this.Controls.Add(this.lblPersonajeDos);
-            this.Controls.Add(this.cboPersonajeUno);
-            this.Controls.Add(this.lblPersonajeUno);
-            this.Controls.Add(this.btnEditar);
-            this.Controls.Add(this.btnNuevo);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnRefrescar);
-            this.Controls.Add(this.btnAplicarEfecto);
-            this.Controls.Add(this.cboEfectos);
-            this.Controls.Add(this.lblEfecto);
-            this.Controls.Add(this.dgvPersonajes);
-
-            this.btnAplicarEfecto.Click += new System.EventHandler(this.btnAplicarEfecto_Click);
-            this.btnRefrescar.Click += new System.EventHandler(this.btnRefrescar_Click);
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            this.btnAtacar.Click += new System.EventHandler(this.btnSimularTurno_Click);
-            this.Load += new System.EventHandler(this.FormPrincipal_Load);
-
-
-            this.Text = "Sistema de Batalla RPG - Visitor Pattern";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.FormPrincipal_Load);
-
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPersonajes)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            lblEfecto = new Label();
+            cboEfectos = new ComboBox();
+            //btnAplicarEfecto = new Button();
+            btnRefrescar = new Button();
+            //btnEliminar = new Button();
+            //btnNuevo = new Button();
+            //btnEditar = new Button();
+            lblPersonajeUno = new Label();
+            cboPersonajeUno = new ComboBox();
+            lblPersonajeDos = new Label();
+            cboPersonajeDos = new ComboBox();
+            lblEscenario = new Label();
+            cboEscenario = new ComboBox();
+            btnAtacar = new Button();
+            lblTurno = new Label();
+            lstLog = new ListBox();
+            lblEfectosTurno = new Label();
+            pnlArena = new Panel();
+            picP1 = new PictureBox();
+            picP2 = new PictureBox();
+            lblVidaP1 = new Label();
+            lblVidaP2 = new Label();
+            lblEstadosP1 = new Label();
+            lblEstadosP2 = new Label();
+            lblStatsP1 = new Label();
+            lblStatsP2 = new Label();
+            btnStatsP1 = new Button();
+            btnStatsP2 = new Button();
+            pnlArena.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picP1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picP2).BeginInit();
+            SuspendLayout();
+            // 
+            // lblEfecto
+            // 
+            lblEfecto.Location = new Point(13, 389);
+            lblEfecto.Name = "lblEfecto";
+            lblEfecto.Size = new Size(100, 23);
+            lblEfecto.TabIndex = 16;
+            lblEfecto.Text = "Efecto:";
+            // 
+            // cboEfectos
+            // 
+            cboEfectos.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboEfectos.Location = new Point(71, 386);
+            cboEfectos.Name = "cboEfectos";
+            cboEfectos.Size = new Size(180, 23);
+            cboEfectos.TabIndex = 15;
+            // 
+            // btnAplicarEfecto
+            // 
+            //btnAplicarEfecto.Location = new Point(261, 385);
+            //btnAplicarEfecto.Name = "btnAplicarEfecto";
+            //btnAplicarEfecto.Size = new Size(110, 25);
+            //btnAplicarEfecto.TabIndex = 14;
+            //btnAplicarEfecto.Text = "Aplicar efecto";
+            //btnAplicarEfecto.Click += btnAplicarEfecto_Click;
+            // 
+            // btnRefrescar
+            // 
+            btnRefrescar.Location = new Point(381, 385);
+            btnRefrescar.Name = "btnRefrescar";
+            btnRefrescar.Size = new Size(80, 25);
+            btnRefrescar.TabIndex = 13;
+            btnRefrescar.Text = "Refrescar";
+            btnRefrescar.Click += btnRefrescar_Click;
+            // 
+            // btnEliminar
+            // 
+            //btnEliminar.Location = new Point(471, 385);
+            //btnEliminar.Name = "btnEliminar";
+            //btnEliminar.Size = new Size(75, 25);
+            //btnEliminar.TabIndex = 12;
+            //btnEliminar.Text = "Eliminar";
+            //btnEliminar.Click += btnEliminar_Click;
+            //// 
+            //// btnNuevo
+            //// 
+            //btnNuevo.Location = new Point(556, 385);
+            //btnNuevo.Name = "btnNuevo";
+            //btnNuevo.Size = new Size(75, 25);
+            //btnNuevo.TabIndex = 11;
+            //btnNuevo.Text = "Nuevo";
+            //btnNuevo.Click += btnNuevo_Click;
+            //// 
+            //// btnEditar
+            //// 
+            //btnEditar.Location = new Point(641, 385);
+            //btnEditar.Name = "btnEditar";
+            //btnEditar.Size = new Size(75, 25);
+            //btnEditar.TabIndex = 10;
+            //btnEditar.Text = "Editar";
+            //btnEditar.Click += btnEditar_Click;
+            // 
+            // lblPersonajeUno
+            // 
+            lblPersonajeUno.Location = new Point(13, 424);
+            lblPersonajeUno.Name = "lblPersonajeUno";
+            lblPersonajeUno.Size = new Size(100, 23);
+            lblPersonajeUno.TabIndex = 9;
+            lblPersonajeUno.Text = "Personaje 1:";
+            // 
+            // cboPersonajeUno
+            // 
+            cboPersonajeUno.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboPersonajeUno.Location = new Point(96, 421);
+            cboPersonajeUno.Name = "cboPersonajeUno";
+            cboPersonajeUno.Size = new Size(150, 23);
+            cboPersonajeUno.TabIndex = 8;
+            cboPersonajeUno.SelectedIndexChanged += cboPersonajeUno_SelectedIndexChanged;
+            // 
+            // lblPersonajeDos
+            // 
+            lblPersonajeDos.Location = new Point(261, 424);
+            lblPersonajeDos.Name = "lblPersonajeDos";
+            lblPersonajeDos.Size = new Size(100, 23);
+            lblPersonajeDos.TabIndex = 7;
+            lblPersonajeDos.Text = "Personaje 2:";
+            // 
+            // cboPersonajeDos
+            // 
+            cboPersonajeDos.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboPersonajeDos.Location = new Point(346, 421);
+            cboPersonajeDos.Name = "cboPersonajeDos";
+            cboPersonajeDos.Size = new Size(150, 23);
+            cboPersonajeDos.TabIndex = 6;
+            cboPersonajeDos.SelectedIndexChanged += cboPersonajeDos_SelectedIndexChanged;
+            // 
+            // lblEscenario
+            // 
+            lblEscenario.Location = new Point(511, 424);
+            lblEscenario.Name = "lblEscenario";
+            lblEscenario.Size = new Size(100, 23);
+            lblEscenario.TabIndex = 5;
+            lblEscenario.Text = "Escenario:";
+            // 
+            // cboEscenario
+            // 
+            cboEscenario.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboEscenario.Location = new Point(581, 421);
+            cboEscenario.Name = "cboEscenario";
+            cboEscenario.Size = new Size(140, 23);
+            cboEscenario.TabIndex = 4;
+            cboEscenario.SelectedIndexChanged += cboEscenario_SelectedIndexChanged;
+            // 
+            // btnAtacar
+            // 
+            btnAtacar.Location = new Point(731, 421);
+            btnAtacar.Name = "btnAtacar";
+            btnAtacar.Size = new Size(45, 23);
+            btnAtacar.TabIndex = 3;
+            btnAtacar.Text = "Go!";
+            btnAtacar.Click += btnSimularTurno_Click;
+            // 
+            // lblTurno
+            // 
+            lblTurno.Location = new Point(10, 458);
+            lblTurno.Name = "lblTurno";
+            lblTurno.Size = new Size(100, 23);
+            lblTurno.TabIndex = 2;
+            lblTurno.Text = "Turno: 1";
+            // 
+            // lstLog
+            // 
+            lstLog.ItemHeight = 15;
+            lstLog.Location = new Point(10, 484);
+            lstLog.Name = "lstLog";
+            lstLog.Size = new Size(760, 139);
+            lstLog.TabIndex = 0;
+            // 
+            // lblEfectosTurno
+            // 
+            lblEfectosTurno.AutoSize = true;
+            lblEfectosTurno.Location = new Point(148, 458);
+            lblEfectosTurno.Name = "lblEfectosTurno";
+            lblEfectosTurno.Size = new Size(108, 15);
+            lblEfectosTurno.TabIndex = 1;
+            lblEfectosTurno.Text = "Efectos usados: 0/2";
+            // 
+            // pnlArena
+            // 
+            pnlArena.BackColor = Color.Transparent;
+            pnlArena.BackgroundImageLayout = ImageLayout.Stretch;
+            pnlArena.BorderStyle = BorderStyle.FixedSingle;
+            pnlArena.Controls.Add(picP1);
+            pnlArena.Controls.Add(picP2);
+            pnlArena.Controls.Add(lblVidaP1);
+            pnlArena.Controls.Add(lblVidaP2);
+            pnlArena.Controls.Add(lblEstadosP1);
+            pnlArena.Controls.Add(lblEstadosP2);
+            pnlArena.Controls.Add(lblStatsP1);
+            pnlArena.Controls.Add(lblStatsP2);
+            pnlArena.Controls.Add(btnStatsP1);
+            pnlArena.Controls.Add(btnStatsP2);
+            pnlArena.Location = new Point(12, 12);
+            pnlArena.Name = "pnlArena";
+            pnlArena.Size = new Size(760, 334);
+            pnlArena.TabIndex = 18;
+            // 
+            // picP1
+            // 
+            picP1.Location = new Point(80, 40);
+            picP1.Name = "picP1";
+            picP1.Size = new Size(150, 150);
+            picP1.SizeMode = PictureBoxSizeMode.StretchImage;
+            picP1.TabIndex = 0;
+            picP1.TabStop = false;
+            picP1.Click += picP1_Click;
+            picP1.BackColor = Color.Transparent;
+            // 
+            // picP2
+            // 
+            picP2.Location = new Point(530, 40);
+            picP2.Name = "picP2";
+            picP2.Size = new Size(150, 150);
+            picP2.SizeMode = PictureBoxSizeMode.StretchImage;
+            picP2.TabIndex = 1;
+            picP2.TabStop = false;
+            picP2.Click += picP2_Click;
+            picP1.BackColor = Color.Transparent;
+            // 
+            // lblVidaP1
+            // 
+            lblVidaP1.AutoSize = true;
+            lblVidaP1.Font = new Font(lblVidaP1.Font, FontStyle.Bold);
+            lblVidaP1.Location = new Point(80, 10);
+            lblVidaP1.Name = "lblVidaP1";
+            lblVidaP1.Size = new Size(56, 15);
+            lblVidaP1.TabIndex = 2;
+            lblVidaP1.Text = "VIDA: 0/0";
+            // 
+            // lblVidaP2
+            // 
+            lblVidaP2.AutoSize = true;
+            lblVidaP2.Font = new Font(lblVidaP2.Font, FontStyle.Bold);
+            lblVidaP2.Location = new Point(530, 10);
+            lblVidaP2.Name = "lblVidaP2";
+            lblVidaP2.Size = new Size(56, 15);
+            lblVidaP2.TabIndex = 3;
+            lblVidaP2.Text = "VIDA: 0/0";
+            // 
+            // lblEstadosP1
+            // 
+            lblEstadosP1.AutoSize = true;
+            lblEstadosP1.Font = new Font(lblEstadosP1.Font, FontStyle.Bold);
+            lblEstadosP1.Location = new Point(80, 195);
+            lblEstadosP1.Name = "lblEstadosP1";
+            lblEstadosP1.Size = new Size(67, 15);
+            lblEstadosP1.TabIndex = 4;
+            lblEstadosP1.Text = "ESTADOS: -";
+            // 
+            // lblEstadosP2
+            // 
+            lblEstadosP2.AutoSize = true;
+            lblEstadosP2.Font = new Font(lblEstadosP2.Font, FontStyle.Bold);
+            lblEstadosP2.Location = new Point(530, 195);
+            lblEstadosP2.Name = "lblEstadosP2";
+            lblEstadosP2.Size = new Size(67, 15);
+            lblEstadosP2.TabIndex = 5;
+            lblEstadosP2.Text = "ESTADOS: -";
+            // 
+            // lblStatsP1
+            // 
+            lblStatsP1.Font = new Font("Segoe UI", 9F);
+            lblStatsP1.Font = new Font(lblStatsP1.Font, FontStyle.Bold);
+            lblStatsP1.Location = new Point(80, 215);
+            lblStatsP1.Name = "lblStatsP1";
+            lblStatsP1.Size = new Size(200, 60);
+            lblStatsP1.TabIndex = 6;
+            lblStatsP1.Text = "STATS:";
+            // 
+            // lblStatsP2
+            // 
+            lblStatsP2.Font = new Font("Segoe UI", 9F);
+            lblStatsP2.Font = new Font(lblStatsP2.Font, FontStyle.Bold);
+            lblStatsP2.Location = new Point(530, 215);
+            lblStatsP2.Name = "lblStatsP2";
+            lblStatsP2.Size = new Size(200, 60);
+            lblStatsP2.TabIndex = 7;
+            lblStatsP2.Text = "STATS:";
+            // 
+            // btnStatsP1
+            // 
+            btnStatsP1.Location = new Point(80, 280);
+            btnStatsP1.Name = "btnStatsP1";
+            btnStatsP1.Size = new Size(150, 25);
+            btnStatsP1.TabIndex = 8;
+            btnStatsP1.Text = "Ver Stats P1";
+            btnStatsP1.Click += btnStatsP1_Click;
+            // 
+            // btnStatsP2
+            // 
+            btnStatsP2.Location = new Point(530, 280);
+            btnStatsP2.Name = "btnStatsP2";
+            btnStatsP2.Size = new Size(150, 25);
+            btnStatsP2.TabIndex = 9;
+            btnStatsP2.Text = "Ver Stats P2";
+            btnStatsP2.Click += btnStatsP2_Click;
+            // 
+            // FormPrincipal
+            // 
+            ClientSize = new Size(784, 650);
+            Controls.Add(lstLog);
+            Controls.Add(lblEfectosTurno);
+            Controls.Add(lblTurno);
+            Controls.Add(btnAtacar);
+            Controls.Add(cboEscenario);
+            Controls.Add(lblEscenario);
+            Controls.Add(cboPersonajeDos);
+            Controls.Add(lblPersonajeDos);
+            Controls.Add(cboPersonajeUno);
+            Controls.Add(lblPersonajeUno);
+            //Controls.Add(btnEditar);
+            //Controls.Add(btnNuevo);
+            //Controls.Add(btnEliminar);
+            Controls.Add(btnRefrescar);
+            //Controls.Add(btnAplicarEfecto);
+            Controls.Add(cboEfectos);
+            Controls.Add(lblEfecto);
+            Controls.Add(pnlArena);
+            Name = "FormPrincipal";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Sistema de Batalla RPG - Visitor Pattern";
+            Load += FormPrincipal_Load;
+            pnlArena.ResumeLayout(false);
+            pnlArena.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picP1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picP2).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dgvPersonajes;
         private System.Windows.Forms.Label lblEfecto;
         private System.Windows.Forms.ComboBox cboEfectos;
-        private System.Windows.Forms.Button btnAplicarEfecto;
+        //private System.Windows.Forms.Button btnAplicarEfecto;
         private System.Windows.Forms.Button btnRefrescar;
-        private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnNuevo;
-        private System.Windows.Forms.Button btnEditar;
+        //private System.Windows.Forms.Button btnEliminar;
+        //private System.Windows.Forms.Button btnNuevo;
+        //private System.Windows.Forms.Button btnEditar;
 
         private System.Windows.Forms.Label lblPersonajeUno;
         private System.Windows.Forms.ComboBox cboPersonajeUno;
@@ -195,5 +368,18 @@
         private System.Windows.Forms.Label lblTurno;
         private System.Windows.Forms.ListBox lstLog;
         private System.Windows.Forms.Label lblEfectosTurno;
+
+        private System.Windows.Forms.Panel pnlArena;
+        private System.Windows.Forms.PictureBox picP1;
+        private System.Windows.Forms.PictureBox picP2;
+        private System.Windows.Forms.Label lblVidaP1;
+        private System.Windows.Forms.Label lblVidaP2;
+        private System.Windows.Forms.Label lblEstadosP1;
+        private System.Windows.Forms.Label lblEstadosP2;
+        private Label lblStatsP1;
+        private Label lblStatsP2;
+        private Button btnStatsP1;
+        private Button btnStatsP2;
+
     }
 }
