@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{088B1018-79C4-468C-8C40-B96D21A7F02E}|DAL\\DAL.csproj|c:\\ingenieria\\diego\\trabajo de diploma\\final_trabajo_diploma\\final_diploma_visitor\\dal\\querys.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
-      "RelativeMoniker": "D:0:0:{088B1018-79C4-468C-8C40-B96D21A7F02E}|DAL\\DAL.csproj|solutionrelative:dal\\querys.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+      "AbsoluteMoniker": "D:0:0:{126178B3-6C96-485F-BEC3-63DA02CF8C30}|BLL\\BLL.csproj|c:\\ingenieria\\diego\\trabajo de diploma\\final_trabajo_diploma\\final_diploma_visitor\\bll\\servbatalla.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{126178B3-6C96-485F-BEC3-63DA02CF8C30}|BLL\\BLL.csproj|solutionrelative:bll\\servbatalla.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{838274C2-DDB3-40B7-AF38-2BCADCDAA973}|UI\\UI.csproj|c:\\ingenieria\\diego\\trabajo de diploma\\final_trabajo_diploma\\final_diploma_visitor\\ui\\formprincipal.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{838274C2-DDB3-40B7-AF38-2BCADCDAA973}|UI\\UI.csproj|solutionrelative:ui\\formprincipal.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BFA28B9E-FEEC-488A-925D-2E8764787C27}|BE\\BE.csproj|c:\\ingenieria\\diego\\trabajo de diploma\\final_trabajo_diploma\\final_diploma_visitor\\be\\visitor\\iefectovisitor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFA28B9E-FEEC-488A-925D-2E8764787C27}|BE\\BE.csproj|solutionrelative:be\\visitor\\iefectovisitor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{088B1018-79C4-468C-8C40-B96D21A7F02E}|DAL\\DAL.csproj|c:\\ingenieria\\diego\\trabajo de diploma\\final_trabajo_diploma\\final_diploma_visitor\\dal\\querys.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
-      "RelativeMoniker": "D:0:0:{088B1018-79C4-468C-8C40-B96D21A7F02E}|DAL\\DAL.csproj|solutionrelative:dal\\querys.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+      "AbsoluteMoniker": "D:0:0:{BFA28B9E-FEEC-488A-925D-2E8764787C27}|BE\\BE.csproj|c:\\ingenieria\\diego\\trabajo de diploma\\final_trabajo_diploma\\final_diploma_visitor\\be\\ipersonaje.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFA28B9E-FEEC-488A-925D-2E8764787C27}|BE\\BE.csproj|solutionrelative:be\\ipersonaje.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,26 +27,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Querys.sql ",
-              "DocumentMoniker": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\DAL\\Querys.sql",
-              "RelativeDocumentMoniker": "DAL\\Querys.sql",
-              "ToolTip": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\DAL\\Querys.sql",
-              "RelativeToolTip": "DAL\\Querys.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-12-18T23:47:12.956Z",
+              "Title": "ServBatalla.cs",
+              "DocumentMoniker": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\BLL\\ServBatalla.cs",
+              "RelativeDocumentMoniker": "BLL\\ServBatalla.cs",
+              "ToolTip": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\BLL\\ServBatalla.cs",
+              "RelativeToolTip": "BLL\\ServBatalla.cs",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAqwHsAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-19T14:39:36.28Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "FormPrincipal.Designer.cs",
-              "DocumentMoniker": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\UI\\FormPrincipal.Designer.cs",
-              "RelativeDocumentMoniker": "UI\\FormPrincipal.Designer.cs",
-              "ToolTip": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\UI\\FormPrincipal.Designer.cs",
-              "RelativeToolTip": "UI\\FormPrincipal.Designer.cs",
-              "ViewState": "AgIAACEBAAAAAAAAAAAIwCoBAAA5AAAAAAAAAA==",
+              "Title": "IEfectoVisitor.cs",
+              "DocumentMoniker": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\BE\\Visitor\\IEfectoVisitor.cs",
+              "RelativeDocumentMoniker": "BE\\Visitor\\IEfectoVisitor.cs",
+              "ToolTip": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\BE\\Visitor\\IEfectoVisitor.cs",
+              "RelativeToolTip": "BE\\Visitor\\IEfectoVisitor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-18T17:08:45.1Z",
+              "WhenOpened": "2025-12-19T14:38:22.652Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IPersonaje.cs",
+              "DocumentMoniker": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\BE\\IPersonaje.cs",
+              "RelativeDocumentMoniker": "BE\\IPersonaje.cs",
+              "ToolTip": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\BE\\IPersonaje.cs",
+              "RelativeToolTip": "BE\\IPersonaje.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAwBEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-19T14:37:21.495Z",
               "EditorCaption": ""
             }
           ]

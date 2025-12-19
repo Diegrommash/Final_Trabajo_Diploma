@@ -7,10 +7,6 @@ namespace BE.Strategy.Base
     {
         public abstract ResultadoEvaluacion Evaluar(Cliente cliente);
 
-        // -----------------------------
-        // Normalizaciones comunes
-        // -----------------------------
-
         protected int NormalizarIngresos(decimal ingresos)
         {
             if (ingresos < 200_000) return 20;
@@ -20,7 +16,6 @@ namespace BE.Strategy.Base
 
         protected int NormalizarHistorial(int historial)
         {
-            // ya viene 0–100
             return historial;
         }
 
@@ -37,10 +32,6 @@ namespace BE.Strategy.Base
             if (valor < 500_000) return 60;
             return 100;
         }
-
-        // -----------------------------
-        // Reglas comunes de resultado
-        // -----------------------------
 
         protected NivelRiesgo ObtenerNivel(int score)
         {

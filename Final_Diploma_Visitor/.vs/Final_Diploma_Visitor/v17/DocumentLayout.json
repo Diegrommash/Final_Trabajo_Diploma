@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{838274C2-DDB3-40B7-AF38-2BCADCDAA973}|UI\\UI.csproj|c:\\ingenieria\\diego\\trabajo de diploma\\final_trabajo_diploma\\final_diploma_visitor\\ui\\formprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{838274C2-DDB3-40B7-AF38-2BCADCDAA973}|UI\\UI.csproj|solutionrelative:ui\\formprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{126178B3-6C96-485F-BEC3-63DA02CF8C30}|BLL\\BLL.csproj|c:\\ingenieria\\diego\\trabajo de diploma\\final_trabajo_diploma\\final_diploma_visitor\\bll\\servbatalla.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{126178B3-6C96-485F-BEC3-63DA02CF8C30}|BLL\\BLL.csproj|solutionrelative:bll\\servbatalla.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFA28B9E-FEEC-488A-925D-2E8764787C27}|BE\\BE.csproj|c:\\ingenieria\\diego\\trabajo de diploma\\final_trabajo_diploma\\final_diploma_visitor\\be\\visitor\\iefectovisitor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFA28B9E-FEEC-488A-925D-2E8764787C27}|BE\\BE.csproj|solutionrelative:be\\visitor\\iefectovisitor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFA28B9E-FEEC-488A-925D-2E8764787C27}|BE\\BE.csproj|c:\\ingenieria\\diego\\trabajo de diploma\\final_trabajo_diploma\\final_diploma_visitor\\be\\ipersonaje.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFA28B9E-FEEC-488A-925D-2E8764787C27}|BE\\BE.csproj|solutionrelative:be\\ipersonaje.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +27,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "FormPrincipal.cs",
-              "DocumentMoniker": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\UI\\FormPrincipal.cs",
-              "RelativeDocumentMoniker": "UI\\FormPrincipal.cs",
-              "ToolTip": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\UI\\FormPrincipal.cs*",
-              "RelativeToolTip": "UI\\FormPrincipal.cs*",
-              "ViewState": "AgIAAL4AAAAAAAAAAAAkwOgAAAAAAAAAAAAAAA==",
+              "Title": "ServBatalla.cs",
+              "DocumentMoniker": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\BLL\\ServBatalla.cs",
+              "RelativeDocumentMoniker": "BLL\\ServBatalla.cs",
+              "ToolTip": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\BLL\\ServBatalla.cs",
+              "RelativeToolTip": "BLL\\ServBatalla.cs",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAqwHsAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-18T23:51:14.949Z",
+              "WhenOpened": "2025-12-19T14:39:36.28Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IEfectoVisitor.cs",
+              "DocumentMoniker": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\BE\\Visitor\\IEfectoVisitor.cs",
+              "RelativeDocumentMoniker": "BE\\Visitor\\IEfectoVisitor.cs",
+              "ToolTip": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\BE\\Visitor\\IEfectoVisitor.cs",
+              "RelativeToolTip": "BE\\Visitor\\IEfectoVisitor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-19T14:38:22.652Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IPersonaje.cs",
+              "DocumentMoniker": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\BE\\IPersonaje.cs",
+              "RelativeDocumentMoniker": "BE\\IPersonaje.cs",
+              "ToolTip": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\BE\\IPersonaje.cs",
+              "RelativeToolTip": "BE\\IPersonaje.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAwBEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-19T14:37:21.495Z",
               "EditorCaption": ""
             }
           ]

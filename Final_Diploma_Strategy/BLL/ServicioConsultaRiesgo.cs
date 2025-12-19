@@ -20,9 +20,6 @@ namespace BLL
             _evaluacionRepo = evaluacionRepo;
         }
 
-        // -----------------------------
-        // Clientes
-        // -----------------------------
 
         public Task<List<Cliente>> ObtenerClientesAsync()
             => _clienteRepo.ObtenerTodosAsync();
@@ -30,21 +27,13 @@ namespace BLL
         public Task<Cliente?> ObtenerClienteAsync(int id)
             => _clienteRepo.ObtenerPorIdAsync(id);
 
-        // -----------------------------
-        // Estrategias
-        // -----------------------------
-
         public Task<TipoRiesgo?> ObtenerEstrategiaActivaAsync(TipoEstrategiaRiesgo tipo)
             => _estrategiaRepo.ObtenerActivaPorTipoAsync(tipo);
 
         public Task<List<TipoRiesgo>> ObternesEstrategiasActivasAsync()
             => _estrategiaRepo.ObtenerTodasActivasAsync();
 
-        // -----------------------------
-        // Evaluaciones
-        // -----------------------------
-
-        public Task<System.Data.DataTable> ObtenerHistorialEvaluacionesAsync(int clienteId)
+        public Task<List<EvaluacionCrediticia>> ObtenerHistorialEvaluacionesAsync(int clienteId)
             => _evaluacionRepo.ObtenerPorClienteAsync(clienteId);
     }
 }

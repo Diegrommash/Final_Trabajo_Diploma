@@ -17,9 +17,6 @@ namespace BLL
             _repo = repo;
         }
 
-        // --------------------------------------------
-        // Crear tarea
-        // --------------------------------------------
         public async Task<Resultado<int>> CrearTareaAsync(string titulo, string descripcion)
         {
             try
@@ -33,9 +30,7 @@ namespace BLL
             }
         }
 
-        // --------------------------------------------
-        // Iniciar tarea
-        // --------------------------------------------
+
         public async Task<Resultado> IniciarAsync(TareaKanban tarea)
         {
             try
@@ -50,9 +45,6 @@ namespace BLL
             }
         }
 
-        // --------------------------------------------
-        // Bloquear tarea
-        // --------------------------------------------
         public async Task<Resultado> BloquearAsync(TareaKanban tarea, string motivo)
         {
             try
@@ -67,9 +59,6 @@ namespace BLL
             }
         }
 
-        // --------------------------------------------
-        // Enviar a revisión
-        // --------------------------------------------
         public async Task<Resultado> RevisarAsync(TareaKanban tarea)
         {
             try
@@ -84,9 +73,6 @@ namespace BLL
             }
         }
 
-        // --------------------------------------------
-        // Finalizar tarea
-        // --------------------------------------------
         public async Task<Resultado> FinalizarAsync(TareaKanban tarea)
         {
             try
@@ -101,9 +87,6 @@ namespace BLL
             }
         }
 
-        // --------------------------------------------
-        // Obtener tareas por estado
-        // --------------------------------------------
         public async Task<Resultado<List<TareaKanban>>> ObtenerPorEstadoAsync(string estado)
         {
             try
@@ -119,9 +102,6 @@ namespace BLL
             }
         }
 
-        // --------------------------------------------
-        // Persistir estado
-        // --------------------------------------------
         private async Task PersistirEstadoAsync(TareaKanban tarea, string? motivo)
         {
             await _repo.CambiarEstadoAsync(
@@ -144,9 +124,6 @@ namespace BLL
         }
 
 
-        // --------------------------------------------
-        // Mapper DTO → Dominio
-        // --------------------------------------------
         private TareaKanban MapearDominio(Tarea dto)
         {
             IEstadoTarea estado = dto.EstadoActual switch

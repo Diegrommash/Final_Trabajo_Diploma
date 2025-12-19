@@ -11,7 +11,7 @@ CREATE TABLE Cliente
 
     IngresosMensuales DECIMAL(18,2) NOT NULL,
     Edad INT NOT NULL,
-    ScoreHistorial INT NOT NULL,      -- 0 a 100
+    ScoreHistorial INT NOT NULL, 
     ValorGarantias DECIMAL(18,2) NOT NULL,
 
     Activo BIT NOT NULL DEFAULT 1
@@ -22,7 +22,7 @@ CREATE TABLE EstrategiaRiesgo
 (
     Id INT IDENTITY PRIMARY KEY,
     Nombre NVARCHAR(50) NOT NULL,
-    TipoEstrategia INT NOT NULL, -- enum TipoEstrategiaRiesgo
+    TipoEstrategia INT NOT NULL,
     Activa BIT NOT NULL DEFAULT 1,
     Observaciones NVARCHAR(200)
 );
@@ -35,7 +35,7 @@ CREATE TABLE EvaluacionCrediticia
     EstrategiaRiesgoId INT NOT NULL,
 
     Score INT NOT NULL,
-    NivelRiesgo INT NOT NULL, -- enum NivelRiesgo
+    NivelRiesgo INT NOT NULL,
     Aprobado BIT NOT NULL,
 
     Observaciones NVARCHAR(250),
@@ -223,7 +223,10 @@ BEGIN
 
     SELECT
         ec.Id,
-        er.Nombre AS Estrategia,
+        ec.ClienteId,
+        c.Nombre AS NombreCliente,
+        ec.EstrategiaRiesgoId,
+        er.Nombre AS NombreRiesgoEstrategia,
         ec.Score,
         ec.NivelRiesgo,
         ec.Aprobado,
@@ -232,10 +235,15 @@ BEGIN
     FROM EvaluacionCrediticia ec
     INNER JOIN EstrategiaRiesgo er
         ON er.Id = ec.EstrategiaRiesgoId
+    INNER JOIN Cliente c
+        ON c.Id = ec.ClienteId
     WHERE ec.ClienteId = @ClienteId
+      AND c.Activo = 1
+      AND er.Activa = 1
     ORDER BY ec.FechaEvaluacion DESC;
 END;
 GO
+
 
 INSERT INTO EstrategiaRiesgo (Nombre, TipoEstrategia, Activa, Observaciones)
 VALUES

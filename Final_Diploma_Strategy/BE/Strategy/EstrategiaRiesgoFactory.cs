@@ -19,5 +19,6 @@ namespace BE
                 _ => throw new ArgumentException("Tipo de estrategia de riesgo no soportada")
             };
         }
+
     }
 }

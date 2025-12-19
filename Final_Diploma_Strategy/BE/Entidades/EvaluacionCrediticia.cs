@@ -6,8 +6,8 @@ namespace BE.Entidades
     {
         public int Id { get; set; }
 
-        public int ClienteId { get; set; }
-        public int EstrategiaRiesgoId { get; set; }
+        public Cliente Cliente { get; set; }
+        public TipoRiesgo TipoRiesgo { get; set; }
 
         public int Score { get; set; }
         public NivelRiesgo NivelRiesgo { get; set; }

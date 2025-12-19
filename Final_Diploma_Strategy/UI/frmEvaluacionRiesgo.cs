@@ -75,10 +75,10 @@ namespace UI
                 return string.Empty;
 
             return texto
-                .Replace("\r\n", "\n")                  // unificar saltos
-                .Replace("\n", Environment.NewLine)     // WinForms-friendly
+                .Replace("\r\n", "\n")
+                .Replace("\n", Environment.NewLine)
                 .Split(Environment.NewLine)
-                .Select(linea => linea.Trim())          // 🔥 quita espacios/tabs
+                .Select(linea => linea.Trim())
                 .Aggregate((a, b) => a + Environment.NewLine + b);
         }
     }

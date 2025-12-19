@@ -23,29 +23,24 @@ namespace BLL
 
         public async Task<ResultadoEvaluacion> EvaluarAsync(
             Cliente cliente,
-            TipoRiesgo estrategia)
+            TipoRiesgo tipoRiesgo)
         {
-            // 1️⃣ Obtener cliente
             var clienteBD = await _clienteRepo.ObtenerPorIdAsync(cliente.Id)
                 ?? throw new Exception("Cliente no encontrado.");
 
-            // 2️⃣ Obtener estrategia configurada (DB)
             var estrategiaBD = await _estrategiaRepo
-                .ObtenerActivaPorTipoAsync(estrategia.TipoEstrategia)
+                .ObtenerActivaPorTipoAsync(tipoRiesgo.TipoEstrategia)
                 ?? throw new Exception("Estrategia no configurada o inactiva.");
 
-            // 3️⃣ Crear estrategia concreta (Factory)
             var estrategiaRiesgo = EstrategiaRiesgoFactory
                 .Crear(estrategiaBD.TipoEstrategia);
 
-            // 4️⃣ Ejecutar evaluación
             ResultadoEvaluacion resultado = estrategiaRiesgo.Evaluar(cliente);
 
-            // 5️⃣ Registrar evaluación
             var evaluacion = new EvaluacionCrediticia
             {
-                ClienteId = cliente.Id,
-                EstrategiaRiesgoId = estrategiaBD.Id,
+                Cliente = clienteBD,
+                TipoRiesgo = estrategiaBD,
                 Score = resultado.Score,
                 NivelRiesgo = resultado.Nivel,
                 Aprobado = resultado.Aprobado,
@@ -55,7 +50,6 @@ namespace BLL
 
             await _evaluacionRepo.RegistrarAsync(evaluacion);
 
-            // 6️⃣ Devolver resultado a la UI
             return resultado;
         }
     }

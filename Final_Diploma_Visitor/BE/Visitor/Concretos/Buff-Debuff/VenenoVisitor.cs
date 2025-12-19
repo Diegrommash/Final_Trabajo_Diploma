@@ -13,7 +13,6 @@ namespace BE.Visitor
 
         public string Visitar(Guerrero g, bool esInicial)
         {
-            // daño dependiendo de si es el primer turno o uno prolongado
             g.Vida -= esInicial ? 10 : 5;
 
             if (esInicial)
