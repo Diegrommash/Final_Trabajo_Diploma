@@ -1,4 +1,7 @@
-﻿namespace BE
+﻿using BE.Enums;
+using BE.Visitor;
+
+namespace BE
 {
     public class Guerrero : IPersonaje
     {

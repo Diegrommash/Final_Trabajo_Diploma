@@ -11,9 +11,14 @@ namespace BLL
     {
         public IPersonaje Atacante { get; set; } = default!;
         public IPersonaje Defensor { get; set; } = default!;
+
+        public int DanioCausado { get; set; }
+
         public List<string> LogEventos { get; } = new();
+
         public bool BatallaFinalizada { get; set; }
         public IPersonaje? Ganador { get; set; }
+
         public int NumeroTurno { get; set; }
     }
 }

@@ -68,9 +68,6 @@ namespace DAL
             }
         }
 
-        // ================================================================
-        // Obtener estadísticas completas
-        // ================================================================
         public async Task<StatsPersonaje?> ObtenerPorIdAsync(int idPersonaje)
         {
             try

@@ -1,82 +1,86 @@
 ﻿using BE;
+using BE.Visitor;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL
 {
     public class ServBatalla
     {
-        public ServBatalla()
+
+        public EstadoBatalla CrearBatalla(IPersonaje p1, IPersonaje p2)
         {
+            return new EstadoBatalla
+            {
+                Personaje1 = p1,
+                Personaje2 = p2,
+                TurnoP1 = Random.Shared.Next(2) == 0
+            };
         }
 
-        public Resultado<ResultadoBatalla> SimularTurno(
-            IPersonaje atacante,
-            IPersonaje defensor,
-            IEfectoVisitor? escenario,
-            int numeroTurno)
+        public Resultado<ResultadoBatalla> EjecutarTurno(
+            EstadoBatalla estado,
+            IEfectoVisitor? escenario)
         {
-            var resultado = new ResultadoBatalla
-            {
-                Atacante = atacante,
-                Defensor = defensor,
-                NumeroTurno = numeroTurno
-            };
-
             try
             {
-                // 1) Aplicar estados temporales al comienzo del turno
+                if (estado.Finalizada)
+                    return Resultado<ResultadoBatalla>.Fallo("La batalla ya finalizó.");
+
+                IPersonaje atacante = estado.TurnoP1
+                    ? estado.Personaje1
+                    : estado.Personaje2;
+
+                IPersonaje defensor = estado.TurnoP1
+                    ? estado.Personaje2
+                    : estado.Personaje1;
+
+                var resultado = new ResultadoBatalla
+                {
+                    Atacante = atacante,
+                    Defensor = defensor,
+                    NumeroTurno = estado.NumeroTurno
+                };
+
+                resultado.LogEventos.Add($"--- TURNO {estado.NumeroTurno} ---");
+
                 AplicarEstadosTemporales(atacante, resultado);
                 AplicarEstadosTemporales(defensor, resultado);
 
-                //// 2) Aplicar escenario (si hay)
                 if (escenario != null)
                 {
                     string logA = atacante.Aceptar(escenario, true);
                     string logD = defensor.Aceptar(escenario, true);
 
-                    resultado.LogEventos.Add($"[Turno {numeroTurno}] Escenario:");
+                    resultado.LogEventos.Add("Escenario:");
                     resultado.LogEventos.Add($" - {atacante}: {logA}");
                     resultado.LogEventos.Add($" - {defensor}: {logD}");
                 }
 
-                // 3) Resolver ataque
                 int danio = Math.Max(0, atacante.Ataque - defensor.Defensa);
                 defensor.Vida -= danio;
 
-                resultado.LogEventos.Add(
-                    $"[Turno {numeroTurno}] {atacante} ataca a {defensor} y causa {danio} de daño. Vida defensor: {defensor.Vida}");
+                resultado.DanioCausado = danio;
 
-                // 4) Ver si alguno murió
-                if (defensor.Vida <= 0 && atacante.Vida <= 0)
+                resultado.LogEventos.Add(
+                    $"{atacante} ataca a {defensor} y causa {danio} de daño. " +
+                    $"Vida restante: {Math.Max(0, defensor.Vida)}");
+
+                EvaluarFinDeBatalla(estado, resultado);
+
+                if (!estado.Finalizada)
                 {
-                    resultado.BatallaFinalizada = true;
-                    resultado.LogEventos.Add("Ambos personajes han caído. Empate.");
-                }
-                else if (defensor.Vida <= 0)
-                {
-                    resultado.BatallaFinalizada = true;
-                    resultado.Ganador = atacante;
-                    resultado.LogEventos.Add($"{atacante} ha ganado la batalla.");
-                }
-                else if (atacante.Vida <= 0)
-                {
-                    resultado.BatallaFinalizada = true;
-                    resultado.Ganador = defensor;
-                    resultado.LogEventos.Add($"{defensor} ha ganado la batalla.");
+                    estado.TurnoP1 = !estado.TurnoP1;
+                    estado.NumeroTurno++;
                 }
 
                 return Resultado<ResultadoBatalla>.Correcto(resultado);
             }
             catch (Exception ex)
             {
-                return Resultado<ResultadoBatalla>.Fallo("Error al simular el turno: " + ex.Message);
+                return Resultado<ResultadoBatalla>.Fallo(
+                    "Error al ejecutar el turno de batalla: " + ex.Message);
             }
         }
-
 
         private void AplicarEstadosTemporales(IPersonaje p, ResultadoBatalla res)
         {
@@ -86,16 +90,51 @@ namespace BLL
 
                 string log = p.Aceptar(estado.Efecto, false);
                 estado.TurnosRestantes--;
-
-                res.LogEventos.Add($"  Estado '{estado.Nombre}' en {p}: {log} (restan {estado.TurnosRestantes})");
+                 
+                res.LogEventos.Add(
+                    $"Estado '{estado.Nombre}' en {p}: {log} " +
+                    $"(restan {estado.TurnosRestantes})");
 
                 if (estado.TurnosRestantes <= 0)
                 {
-                    res.LogEventos.Add($"  Estado '{estado.Nombre}' se desvanece de {p}.");
+                    res.LogEventos.Add(
+                        $"El estado '{estado.Nombre}' se desvanece de {p}.");
                     p.EstadosTemporales.RemoveAt(i);
                 }
             }
         }
 
+        private void EvaluarFinDeBatalla(
+            EstadoBatalla estado,
+            ResultadoBatalla resultado)
+        {
+            var p1 = estado.Personaje1;
+            var p2 = estado.Personaje2;
+
+            if (p1.Vida <= 0 && p2.Vida <= 0)
+            {
+                estado.Finalizada = true;
+                resultado.BatallaFinalizada = true;
+                resultado.LogEventos.Add("Ambos personajes han caído. Empate.");
+                return;
+            }
+
+            if (p1.Vida <= 0)
+            {
+                estado.Finalizada = true;
+                resultado.BatallaFinalizada = true;
+                resultado.Ganador = p2;
+                resultado.LogEventos.Add($"{p2} ha ganado la batalla.");
+                return;
+            }
+
+            if (p2.Vida <= 0)
+            {
+                estado.Finalizada = true;
+                resultado.BatallaFinalizada = true;
+                resultado.Ganador = p1;
+                resultado.LogEventos.Add($"{p1} ha ganado la batalla.");
+            }
+        }
     }
 }

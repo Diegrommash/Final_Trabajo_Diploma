@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{838274C2-DDB3-40B7-AF38-2BCADCDAA973}|UI\\UI.csproj|c:\\ingenieria\\diego\\trabajo de diploma\\final_trabajo_diploma\\final_diploma_visitor\\ui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{838274C2-DDB3-40B7-AF38-2BCADCDAA973}|UI\\UI.csproj|solutionrelative:ui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{838274C2-DDB3-40B7-AF38-2BCADCDAA973}|UI\\UI.csproj|c:\\ingenieria\\diego\\trabajo de diploma\\final_trabajo_diploma\\final_diploma_visitor\\ui\\formprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{838274C2-DDB3-40B7-AF38-2BCADCDAA973}|UI\\UI.csproj|solutionrelative:ui\\formprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\UI\\Program.cs",
-              "RelativeDocumentMoniker": "UI\\Program.cs",
-              "ToolTip": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\UI\\Program.cs",
-              "RelativeToolTip": "UI\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA2AAAAAAAAAA==",
+              "Title": "FormPrincipal.cs",
+              "DocumentMoniker": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\UI\\FormPrincipal.cs",
+              "RelativeDocumentMoniker": "UI\\FormPrincipal.cs",
+              "ToolTip": "C:\\Ingenieria\\Diego\\Trabajo de diploma\\Final_Trabajo_Diploma\\Final_Diploma_Visitor\\UI\\FormPrincipal.cs*",
+              "RelativeToolTip": "UI\\FormPrincipal.cs*",
+              "ViewState": "AgIAAL4AAAAAAAAAAAAkwOgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-12T23:36:22.169Z",
+              "WhenOpened": "2025-12-18T23:51:14.949Z",
               "EditorCaption": ""
             }
           ]

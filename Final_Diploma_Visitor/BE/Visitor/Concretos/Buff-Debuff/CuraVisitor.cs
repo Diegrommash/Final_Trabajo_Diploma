@@ -1,5 +1,4 @@
-﻿
-namespace BE
+﻿namespace BE.Visitor
 {
     public class CuraVisitor : IEfectoVisitor
     {

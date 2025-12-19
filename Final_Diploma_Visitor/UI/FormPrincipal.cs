@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using BE;
+﻿using BE;
+using BE.Enums;
+using BE.Visitor;
+using BE.Visitor.Concretos.Escenarios;
 using BLL;
 
 namespace UI
@@ -18,15 +14,13 @@ namespace UI
         private IPersonaje? _personaje1;
         private IPersonaje? _personaje2;
 
-        private readonly Random _rng = new();
-        private bool _turnoP1Ataca;
+        private EstadoBatalla? _estadoBatalla;
 
         private readonly ServPersonaje _servPersonaje;
         private readonly ServBatalla _servBatalla = new();
         private readonly ServStatsPersonaje _servStatsPersonaje;
 
         private List<IPersonaje> _personajes = new();
-        private int _turnoActual = 1;
 
         public FormPrincipal(ServPersonaje servPersonaje, ServStatsPersonaje servStatsPersonaje)
         {
@@ -35,19 +29,199 @@ namespace UI
             _servStatsPersonaje = servStatsPersonaje;
         }
 
-        // ============================================================
-        // FORM LOAD
-        // ============================================================
         private async void FormPrincipal_Load(object sender, EventArgs e)
         {
             CargarEfectos();
             CargarEscenarios();
-
             await CargarPersonajesAsync();
 
             ActualizarSpritesPersonajesSeleccionados();
             ActualizarVidaYEstadosUI();
             ActualizarEscenarioVisual();
+        }
+
+        private async void btnSimularTurno_Click(object sender, EventArgs e)
+        {
+            if (!_batallaEnCurso)
+            {
+                if (cboPersonajeUno.SelectedItem is not IPersonaje p1 ||
+                    cboPersonajeDos.SelectedItem is not IPersonaje p2)
+                {
+                    MessageBox.Show("Seleccione dos personajes.");
+                    return;
+                }
+
+                if (p1 == p2)
+                {
+                    MessageBox.Show("Los personajes deben ser distintos.");
+                    return;
+                }
+
+                _personaje1 = p1;
+                _personaje2 = p2;
+
+                _estadoBatalla = _servBatalla.CrearBatalla(_personaje1, _personaje2);
+                _batallaEnCurso = true;
+
+                cboPersonajeUno.Enabled = false;
+                cboPersonajeDos.Enabled = false;
+                cboEscenario.Enabled = false;
+
+                lstLog.Items.Add("=== ¡La batalla comienza! ===");
+
+                string inicia = _estadoBatalla.TurnoP1
+                    ? _personaje1.ToString()!
+                    : _personaje2.ToString()!;
+
+                lstLog.Items.Add($"🎲 El azar decide: comienza atacando {inicia}");
+
+                _efectosUsadosEnTurno = 0;
+                lblEfectosTurno.Text = "Efectos usados este turno: 0/2";
+                lblTurno.Text = $"Turno: {_estadoBatalla.NumeroTurno}";
+
+                await _servStatsPersonaje.RegistrarBatalla(_personaje1.Id);
+                await _servStatsPersonaje.RegistrarBatalla(_personaje2.Id);
+
+                ActualizarVidaYEstadosUI();
+                ActualizarSpritesPersonajesSeleccionados();
+                return;
+            }
+
+            if (_estadoBatalla == null)
+                return;
+
+            var escenario = (IEfectoVisitor)cboEscenario.SelectedItem!;
+            var resultado = _servBatalla.EjecutarTurno(_estadoBatalla, escenario);
+
+            if (!resultado.Exito)
+            {
+                MessageBox.Show(resultado.Error);
+                return;
+            }
+
+            var datos = resultado.Valor!;
+
+            foreach (var linea in datos.LogEventos)
+                lstLog.Items.Add(linea);
+
+            PictureBox spriteDefensor =
+                datos.Defensor == _personaje1 ? picP1 : picP2;
+
+            await AnimarGolpe(spriteDefensor);
+
+            if (datos.DanioCausado > 0)
+            {
+                await _servStatsPersonaje.RegistrarDanioCausado(
+                    datos.Atacante.Id, datos.DanioCausado);
+
+                await _servStatsPersonaje.RegistrarDanioRecibido(
+                    datos.Defensor.Id, datos.DanioCausado);
+            }
+
+            if (datos.Atacante.Vida > 0)
+                await _servStatsPersonaje.RegistrarTurnoSobrevivido(datos.Atacante.Id);
+
+            if (datos.Defensor.Vida > 0)
+                await _servStatsPersonaje.RegistrarTurnoSobrevivido(datos.Defensor.Id);
+
+            ActualizarVidaYEstadosUI();
+
+            if (datos.BatallaFinalizada)
+            {
+                if (datos.Ganador != null)
+                {
+                    IPersonaje ganador = datos.Ganador;
+                    IPersonaje perdedor = ganador == _personaje1 ? _personaje2! : _personaje1!;
+
+                    lstLog.Items.Add($"🏆 GANADOR: {ganador}");
+
+                    await _servStatsPersonaje.RegistrarVictoria(ganador.Id);
+                    await _servStatsPersonaje.RegistrarDerrota(perdedor.Id);
+
+                    await _servStatsPersonaje.ActualizarMaxTurnos(
+                        ganador.Id, _estadoBatalla.NumeroTurno);
+
+                    await _servStatsPersonaje.ActualizarMaxTurnos(
+                        perdedor.Id, _estadoBatalla.NumeroTurno);
+                }
+                else
+                {
+                    lstLog.Items.Add("🤝 EMPATE.");
+                }
+
+                DialogResult r = MostrarMensajeFinal(datos.Ganador);
+
+                if (r == DialogResult.Yes)
+                    ReiniciarBatalla();
+                else
+                    TerminarBatalla();
+
+                return;
+            }
+
+            _efectosUsadosEnTurno = 0;
+            lblEfectosTurno.Text = "Efectos usados este turno: 0/2";
+            lblTurno.Text = $"Turno: {_estadoBatalla.NumeroTurno}";
+        }
+
+        private void TerminarBatalla()
+        {
+            _batallaEnCurso = false;
+            _estadoBatalla = null;
+
+            cboPersonajeUno.Enabled = true;
+            cboPersonajeDos.Enabled = true;
+            cboEscenario.Enabled = true;
+
+            lblTurno.Text = "Turno: -";
+            lstLog.Items.Add("=== La batalla ha terminado ===");
+        }
+
+        private async void ReiniciarBatalla()
+        {
+            lstLog.Items.Clear();
+            lstLog.Items.Add("=== Nueva batalla iniciada ===");
+
+            _personaje1 = (await _servPersonaje.ObtenerPorIdAsync(_personaje1!.Id)).Valor!;
+            _personaje2 = (await _servPersonaje.ObtenerPorIdAsync(_personaje2!.Id)).Valor!;
+
+            _estadoBatalla = _servBatalla.CrearBatalla(_personaje1, _personaje2);
+            _batallaEnCurso = true;
+
+            _efectosUsadosEnTurno = 0;
+            lblTurno.Text = $"Turno: {_estadoBatalla.NumeroTurno}";
+            lblEfectosTurno.Text = "Efectos usados este turno: 0/2";
+
+            string inicia = _estadoBatalla.TurnoP1
+                ? _personaje1.ToString()!
+                : _personaje2.ToString()!;
+
+            lstLog.Items.Add($"🎲 El azar decide: comienza atacando {inicia}");
+
+            await _servStatsPersonaje.RegistrarBatalla(_personaje1.Id);
+            await _servStatsPersonaje.RegistrarBatalla(_personaje2.Id);
+
+            ActualizarVidaYEstadosUI();
+            ActualizarSpritesPersonajesSeleccionados();
+        }
+
+
+        private void CargarAtacantesYDefensores()
+        {
+            cboPersonajeUno.DataSource = null;
+            cboPersonajeDos.DataSource = null;
+
+            cboPersonajeUno.DataSource = new List<IPersonaje>(_personajes);
+            cboPersonajeUno.DisplayMember = "ToString";
+
+            cboPersonajeDos.DataSource = new List<IPersonaje>(_personajes);
+            cboPersonajeDos.DisplayMember = "ToString";
+
+            if (_personajes.Count >= 2)
+            {
+                cboPersonajeUno.SelectedIndex = 0;
+                cboPersonajeDos.SelectedIndex = 1;
+            }
         }
 
         private void CargarEfectos()
@@ -87,219 +261,6 @@ namespace UI
             _personajes = resultado.Valor!;
             CargarAtacantesYDefensores();
         }
-
-        private void CargarAtacantesYDefensores()
-        {
-            cboPersonajeUno.DataSource = null;
-            cboPersonajeDos.DataSource = null;
-
-            cboPersonajeUno.DataSource = new List<IPersonaje>(_personajes);
-            cboPersonajeUno.DisplayMember = "ToString";
-
-            cboPersonajeDos.DataSource = new List<IPersonaje>(_personajes);
-            cboPersonajeDos.DisplayMember = "ToString";
-
-            if (_personajes.Count >= 2)
-            {
-                cboPersonajeUno.SelectedIndex = 0;
-                cboPersonajeDos.SelectedIndex = 1;
-            }
-        }
-
-        private async void btnRefrescar_Click(object sender, EventArgs e)
-        {
-            await CargarPersonajesAsync();
-        }
-
-        private async void btnSimularTurno_Click(object sender, EventArgs e)
-        {
-            if (!_batallaEnCurso)
-            {
-                if (cboPersonajeUno.SelectedItem is not IPersonaje sel1 ||
-                    cboPersonajeDos.SelectedItem is not IPersonaje sel2)
-                {
-                    MessageBox.Show("Seleccione los dos personajes antes de iniciar.");
-                    return;
-                }
-
-                if (sel1 == sel2)
-                {
-                    MessageBox.Show("Los personajes deben ser distintos.");
-                    return;
-                }
-
-                _personaje1 = sel1;
-                _personaje2 = sel2;
-                _turnoP1Ataca = _rng.Next(2) == 0;
-           
-                _batallaEnCurso = true;
-
-                cboPersonajeUno.Enabled = false;
-                cboPersonajeDos.Enabled = false;
-                cboEscenario.Enabled = false;
-
-                lstLog.Items.Add("=== ¡La batalla comienza! ===");
-
-                string inicia = _turnoP1Ataca ? _personaje1.ToString()! : _personaje2.ToString()!;
-                lstLog.Items.Add($"🎲 El azar decide: comienza atacando {inicia}");
-
-                _efectosUsadosEnTurno = 0;
-                lblEfectosTurno.Text = "Efectos usados este turno: 0/2";
-
-                ActualizarSpritesPersonajesSeleccionados();
-                ActualizarVidaYEstadosUI();
-
-                await _servStatsPersonaje.RegistrarBatalla(_personaje1.Id);
-                await _servStatsPersonaje.RegistrarBatalla(_personaje2.Id);
-            }
-
-            if (_personaje1 == null || _personaje2 == null)
-                return;
-
-            IPersonaje atacante = _turnoP1Ataca ? _personaje1 : _personaje2;
-            IPersonaje defensor = _turnoP1Ataca ? _personaje2 : _personaje1;
-            PictureBox spriteDefensor = _turnoP1Ataca ? picP2 : picP1;
-
-            int vidaAtacanteAntes = atacante.Vida;
-            int vidaDefensorAntes = defensor.Vida;
-
-           var escenario = (IEfectoVisitor)cboEscenario.SelectedItem!;
-            var resultado = _servBatalla.SimularTurno(atacante, defensor, escenario, _turnoActual);
-
-            if (!resultado.Exito)
-            {
-                MessageBox.Show(resultado.Error);
-                return;
-            }
-
-            var datos = resultado.Valor!;
-
-            foreach (var linea in datos.LogEventos)
-                lstLog.Items.Add(linea);
-
-            await AnimarGolpe(spriteDefensor);
-
-            int danioAlDefensor = Math.Max(0, vidaDefensorAntes - defensor.Vida);
-            int danioAlAtacante = Math.Max(0, vidaAtacanteAntes - atacante.Vida);
-
-            if (danioAlDefensor > 0)
-            {
-                await _servStatsPersonaje.RegistrarDanioCausado(atacante.Id, danioAlDefensor);
-                await _servStatsPersonaje.RegistrarDanioRecibido(defensor.Id, danioAlDefensor);
-            }
-
-            if (danioAlAtacante > 0)
-            {
-                await _servStatsPersonaje.RegistrarDanioRecibido(atacante.Id, danioAlAtacante);
-            }
-
-            if (atacante.Vida > 0)
-                await _servStatsPersonaje.RegistrarTurnoSobrevivido(atacante.Id);
-
-            if (defensor.Vida > 0)
-                await _servStatsPersonaje.RegistrarTurnoSobrevivido(defensor.Id);
-
-            ActualizarVidaYEstadosUI();
-
-            if (datos.BatallaFinalizada)
-            {
-
-                foreach (var linea in datos.LogEventos)
-                    lstLog.Items.Add(linea);
-
-                if (datos.Ganador != null)
-                {
-                    IPersonaje ganador = datos.Ganador;
-                    IPersonaje perdedor = ganador == _personaje1 ? _personaje2! : _personaje1!;
-
-                    lstLog.Items.Add($"🏆 GANADOR: {ganador}");
-
-                    await _servStatsPersonaje.RegistrarVictoria(ganador.Id);
-                    await _servStatsPersonaje.RegistrarDerrota(perdedor.Id);
-
-                    await _servStatsPersonaje.ActualizarMaxTurnos(ganador.Id, _turnoActual);
-                    await _servStatsPersonaje.ActualizarMaxTurnos(perdedor.Id, _turnoActual);
-                }
-                else
-                {
-                    lstLog.Items.Add("🤝 EMPATE.");
-                }
-
-                DialogResult decision = MostrarMensajeFinal(datos.Ganador);
-
-                if (decision == DialogResult.Yes)
-                {
-                    ReiniciarBatalla();
-                }
-                else
-                {
-                    TerminarBatalla();
-                }
-
-                return;
-            }
-
-
-            _turnoP1Ataca = !_turnoP1Ataca;
-            lstLog.Items.Add("=== Cambian los roles: ahora ataca el otro personaje ===");
-
-            _efectosUsadosEnTurno = 0;
-            lblEfectosTurno.Text = "Efectos usados este turno: 0/2";
-
-            _turnoActual++;
-            lblTurno.Text = $"Turno: {_turnoActual}";
-        }
-
-        private void TerminarBatalla()
-        {
-            _batallaEnCurso = false;
-
-            cboPersonajeUno.Enabled = true;
-            cboPersonajeDos.Enabled = true;
-            cboEscenario.Enabled = true;
-
-            _turnoActual = 1;
-            lblTurno.Text = "Turno: 1";
-
-            lstLog.Items.Add("=== La batalla ha terminado ===");
-
-            lblEfectosTurno.Text = "Efectos usados este turno: 0/2";
-
-        }
-
-        private async void ReiniciarBatalla()
-        {
-            lstLog.Items.Add("=== Nueva batalla iniciada ===");
-
-            _turnoActual = 1;
-            lblTurno.Text = "Turno: 1";
-
-            _efectosUsadosEnTurno = 0;
-            lblEfectosTurno.Text = "Efectos usados este turno: 0/2";
-
-
-            _batallaEnCurso = false;
-
-            _personaje1?.EstadosTemporales.Clear();
-            _personaje2?.EstadosTemporales.Clear();
-
-            _personaje1 = (await _servPersonaje.ObtenerPorIdAsync(_personaje1.Id)).Valor!;
-            _personaje2 = (await _servPersonaje.ObtenerPorIdAsync(_personaje2.Id)).Valor!;
-
-            _turnoP1Ataca = new Random().Next(0, 2) == 0;
-
-            lstLog.Items.Add(
-                _turnoP1Ataca
-                ? "🎲 El Personaje 1 inicia el ataque"
-                : "🎲 El Personaje 2 inicia el ataque"
-            );
-
-            _batallaEnCurso = true;
-
-            ActualizarVidaYEstadosUI();
-            ActualizarSpritesPersonajesSeleccionados();
-        }
-
 
         private Image? ObtenerSprite(IPersonaje p)
         {
@@ -539,10 +500,6 @@ namespace UI
             await AnimarEfecto(picObjetivo, efecto);
 
             ActualizarVidaYEstadosUI();
-
-            //var res = await _servPersonaje.ModificarAsync(personaje);
-            //if (!res.Exito)
-            //    MessageBox.Show(res.Error);
         }
 
         private void btnStatsP1_Click(object sender, EventArgs e)

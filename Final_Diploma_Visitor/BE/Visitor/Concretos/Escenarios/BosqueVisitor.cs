@@ -1,5 +1,4 @@
-﻿
-namespace BE
+﻿namespace BE.Visitor.Concretos.Escenarios
 {
     public class BosqueVisitor : IEfectoVisitor
     {

@@ -18,7 +18,6 @@
         {
             lblEfecto = new Label();
             cboEfectos = new ComboBox();
-            btnRefrescar = new Button();
             lblPersonajeUno = new Label();
             cboPersonajeUno = new ComboBox();
             lblPersonajeDos = new Label();
@@ -60,15 +59,6 @@
             cboEfectos.Name = "cboEfectos";
             cboEfectos.Size = new Size(180, 23);
             cboEfectos.TabIndex = 15;
-            // 
-            // btnRefrescar
-            // 
-            btnRefrescar.Location = new Point(381, 385);
-            btnRefrescar.Name = "btnRefrescar";
-            btnRefrescar.Size = new Size(80, 25);
-            btnRefrescar.TabIndex = 13;
-            btnRefrescar.Text = "Refrescar";
-            btnRefrescar.Click += btnRefrescar_Click;
             // 
             // lblPersonajeUno
             // 
@@ -288,7 +278,6 @@
             Controls.Add(lblPersonajeDos);
             Controls.Add(cboPersonajeUno);
             Controls.Add(lblPersonajeUno);
-            Controls.Add(btnRefrescar);
             Controls.Add(cboEfectos);
             Controls.Add(lblEfecto);
             Controls.Add(pnlArena);
@@ -308,7 +297,6 @@
         #endregion
         private System.Windows.Forms.Label lblEfecto;
         private System.Windows.Forms.ComboBox cboEfectos;
-        private System.Windows.Forms.Button btnRefrescar;
 
         private System.Windows.Forms.Label lblPersonajeUno;
         private System.Windows.Forms.ComboBox cboPersonajeUno;

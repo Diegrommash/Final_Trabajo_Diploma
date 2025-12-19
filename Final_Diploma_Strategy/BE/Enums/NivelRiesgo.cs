@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BE
+namespace BE.Enums
 {
-    public enum TipoPersonaje
+    public enum NivelRiesgo
     {
-        Guerrero,
-        Mago,
-        Arquero
+        Bajo = 0,
+        Medio = 1,
+        Alto = 2
     }
-
 }

@@ -1,4 +1,7 @@
 ﻿
+using BE.Enums;
+using BE.Visitor;
+
 namespace BE
 {
     public interface IPersonaje
